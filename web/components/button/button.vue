@@ -1,5 +1,5 @@
 <template>
-    <button class="w-button" :class="[
+    <button class="w-button" @click='handleClick' :class="[
             type?'w-button--'+type:'',
             size?'w-button--'+size:'',
             round?'w-button--round':'',
@@ -22,6 +22,10 @@ export default {
     data() {
         return {}
     },
-    methods: {},
+    methods: {
+        handleClick(e) {
+            this.$emit('click', e)
+        },
+    },
 }
 </script>

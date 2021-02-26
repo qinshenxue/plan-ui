@@ -14,6 +14,7 @@
     box-sizing: border-box;
     &:hover {
         cursor: pointer;
+        background-color: fade(@primary_color, 5%);
     }
 }
 
@@ -37,4 +38,18 @@
     color: #fff;
     background-color: @primary_color;
     border-color: @primary_color;
+    &:hover {
+        cursor: pointer;
+        border-color: fade(@primary_color, 80%);
+        background-color: fade(@primary_color, 80%);
+    }
+}
+.w-button--text {
+    color: @primary_color;
+    background-color: transparent;
+    border-color: transparent;
+    &:hover {
+        background-color: transparent;
+        color: fade(@primary_color, 80%);
+    }
 }

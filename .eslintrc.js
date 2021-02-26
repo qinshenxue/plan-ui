@@ -8,6 +8,8 @@ module.exports = {
         parser: 'babel-eslint',
     },
     rules: {
+        'no-param-reassign': 'off',
+        'operator-linebreak': 'off',
         'max-len': 'off',
         'comma-dangle': [
             'error',
