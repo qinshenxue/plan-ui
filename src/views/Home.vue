@@ -53,16 +53,30 @@
             </div>
             <div class="demo-item">
                 <h2>select</h2>
+                <div>
+                    <w-input size="mini"></w-input>
+                </div>
+                <br>
+                <div>
+                    <w-input size="small"></w-input>
+                </div>
+                <br>
+                <div>
+                    <w-input></w-input>
+                </div>
+                <br>
+                <div>
+                    <w-input size="large"></w-input>
+                </div>
+
+            </div>
+            <div class="demo-item">
+                <h2>select</h2>
                 <w-select style="width:200px" v-model="selectValue">
                     <w-select-option value="beijing">北京</w-select-option>
                     <w-select-option value="shanghai">上海</w-select-option>
                     <w-select-option value="guangzhou">广州</w-select-option>
                 </w-select>
-                <select name="" id="" v-model="selectValue">
-                    <option value="beijing">北京</option>
-                    <option value="shanghai">北京</option>
-                    <option value="guangzhou">北京</option>
-                </select>
             </div>
             <div class="demo-item"></div>
             <div class="demo-item"></div>
