@@ -73,10 +73,21 @@
             <div class="demo-item">
                 <h2>select</h2>
                 <w-select style="width:200px" v-model="selectValue">
-                    <w-select-option value="beijing">北京</w-select-option>
-                    <w-select-option value="shanghai">上海</w-select-option>
-                    <w-select-option value="guangzhou">广州</w-select-option>
+                    <w-select-option v-for="option in selectOptions"
+                                     :key="option.value" :value="option.value"
+                                     :label="option.label">
+                    </w-select-option>
                 </w-select>
+                多选
+                <w-select style="width:200px" multiple v-model="selectValues">
+                    <w-select-option v-for="option in selectOptions"
+                                     :key="option.value" :value="option.value"
+                                     :label="option.label">
+                    </w-select-option>
+                </w-select>
+                <div class="row">
+                    <w-button @click="handleChangeOptions">改变options</w-button>
+                </div>
             </div>
             <div class="demo-item"></div>
             <div class="demo-item"></div>
@@ -106,9 +117,40 @@ export default {
             radioChangeArgs: [],
             buttonClickArgs: null,
             selectValue: 'beijing',
+            selectValues: [],
+            selectOptions: [
+                {
+                    value: 'beijing',
+                    label: '北京',
+                },
+                {
+                    value: 'guangzhou',
+                    label: '广州',
+                },
+                {
+                    value: 'shanghai',
+                    label: '上海',
+                },
+            ],
         }
     },
     methods: {
+        handleChangeOptions() {
+            this.selectOptions = [
+                {
+                    value: 'wuhan',
+                    label: '武汉',
+                },
+                {
+                    value: 'nanjing',
+                    label: '南京',
+                },
+                {
+                    value: 'shenzhen',
+                    label: '深圳',
+                },
+            ]
+        },
         handleChange(...args) {
             console.log('页面接受', this.radio)
             this.radioChangeArgs = args
@@ -122,12 +164,11 @@ export default {
 
 <style lang="less">
 .home {
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 100vw;
-    height: 100vh;
     display: flex;
+    .row {
+        padding: 5px;
+    }
     .data {
         width: 25vw;
         padding: 30px;

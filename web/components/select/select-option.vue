@@ -2,7 +2,7 @@
     <div class="w-select-option" :class="{
         'is-active':isSelected
     }" @click="handleClick">
-        <slot></slot>
+        <slot>{{label}}</slot>
     </div>
 </template>
 
@@ -28,14 +28,28 @@ export default {
             }
             return false
         },
-        isSelected() {
-            return this.select.value === this.value
+        isMultiple() {
+            return this.select.multiple
         },
+        isSelected() {
+            if (!this.isMultiple) {
+                return this.select.value === this.value
+            }
+            return this.select.value.indexOf(this.value) > -1
+        },
+    },
+    created() {
+        this.select.$emit('add-option', {
+            label: this.label,
+            value: this.value,
+        })
+    },
+    beforeDestroy() {
+        this.select.$emit('remove-option', this.value)
     },
     methods: {
         handleClick() {
-            this.select.$emit('input', this.value)
-            this.select.handleClose()
+            this.select.$emit('select', this.value)
         },
     },
 }
