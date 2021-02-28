@@ -1,5 +1,6 @@
 .w-input {
     display: inline-flex;
+    position: relative;
 }
 .w-input__inner {
     -webkit-appearance: none;
@@ -19,6 +20,12 @@
         border: 1px solid @primary_color;
     }
 }
+.w-input--prefix .w-input__inner {
+    padding-left: 30px;
+}
+.w-input--suffix .w-input__inner {
+    padding-right: 30px;
+}
 .w-input--small .w-input__inner {
     height: @small_height;
 }
@@ -27,4 +34,28 @@
 }
 .w-input--large .w-input__inner {
     height: @large_height;
+}
+
+.w-input__prefix {
+    position: absolute;
+    height: 100%;
+    left: 5px;
+    top: 0;
+    box-sizing: border-box;
+}
+.w-input__suffix {
+    position: absolute;
+    height: 100%;
+    right: 5px;
+    top: 0;
+    box-sizing: border-box;
+}
+.w-input__prefix-inner,
+.w-input__suffix-inner {
+    width: 25px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
 }

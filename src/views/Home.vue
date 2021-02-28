@@ -66,7 +66,10 @@
                 </div>
                 <br>
                 <div>
-                    <w-input size="large"></w-input>
+                    <w-input size="large">
+                        <i slot="prefix">p</i>
+                        <i slot="suffix">s</i>
+                    </w-input>
                 </div>
 
             </div>

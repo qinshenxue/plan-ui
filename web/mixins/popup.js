@@ -20,6 +20,8 @@ export default {
                     scroller = window
                 }
                 scroller.addEventListener('scroll', this._handleResize)
+                console.log('scroller: ', scroller)
+
                 this.scroller = scroller
             }
         },

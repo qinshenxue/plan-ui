@@ -7,7 +7,7 @@
             </div>
             <div class="el-select__value-icon"></div>
         </div>
-        <selectDropdown ref="dropdown">
+        <selectDropdown :visible.sync="dropdownVisible">
             <slot></slot>
         </selectDropdown>
     </div>
@@ -30,6 +30,7 @@ export default {
     data() {
         return {
             options: [],
+            dropdownVisible: false,
             selectedValue: this.value,
         }
     },
@@ -122,10 +123,10 @@ export default {
             this.selectedLabel = text
         },
         handleClick() {
-            this.$refs.dropdown.show()
+            this.dropdownVisible = true
         },
         handleClose() {
-            this.$refs.dropdown.hide()
+            this.dropdownVisible = false
         },
     },
 }

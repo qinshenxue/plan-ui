@@ -9,9 +9,11 @@ import popup from '../../mixins/popup'
 
 export default {
     mixins: [popup],
+    props: {
+        visible: Boolean,
+    },
     data() {
         return {
-            visible: false,
             style: null,
         }
     },
@@ -28,20 +30,20 @@ export default {
             return false
         },
     },
+    watch: {
+        visible(v) {
+            if (v) {
+                this.handleResize()
+                this._initPopup(this.select.$el)
+            }
+        },
+    },
     mounted() {
         document.body.append(this.$el)
         this.select.popperElm = this.$el
         this.$on('pupup-update', this.handleResize)
     },
     methods: {
-        show() {
-            this.handleResize()
-            this._initPopup(this.select.$el)
-            this.visible = true
-        },
-        hide() {
-            this.visible = false
-        },
         handleResize() {
             const rect = this.select.$el.getBoundingClientRect()
             console.log('rect: ', rect)
