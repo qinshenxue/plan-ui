@@ -1,11 +1,15 @@
 <template>
-    <div class="el-select" v-clickoutside="handleClose">
-        <div class="el-select__value" @click="handleClick">
-            <div class="el-select__value-content">{{selectedLabel}}
-                <template
-                          v-if="multiple && value.length>1">等{{value.length}}个</template>
+    <div class="el-select" :class="{
+        'el-select--dropdown':dropdownVisible,
+        'el-select--plain':plain,
+        'el-select--placeholder':isEmptyValue
+    }" v-clickoutside="handleClose">
+        <div class="el-select__label" @click="handleClick">
+            <div class="el-select__label-inner">{{selectedLabel}}
             </div>
-            <div class="el-select__value-icon"></div>
+            <div class="el-selet__label-multiple"
+                 v-if="multiple && value.length>1">等{{value.length}}个</div>
+            <div class="el-select__arrow"></div>
         </div>
         <selectDropdown :visible.sync="dropdownVisible">
             <slot></slot>
@@ -24,8 +28,10 @@ export default {
     },
     components: { selectDropdown },
     props: {
+        placeholder: String,
         value: [String, Number, Array],
         multiple: Boolean,
+        plain: Boolean,
     },
     data() {
         return {
@@ -35,19 +41,31 @@ export default {
         }
     },
     computed: {
-        selectedLabel() {
-            let label = ''
-            let val = this.value
-            if (this.multiple && Array.isArray(this.value) && this.value.length) {
-                val = this.value[0]
+        isEmptyValue() {
+            if (this.multiple) {
+                return (Array.isArray(this.value) || true) && !this.value.length
             }
-            this.options.some((item) => {
-                if (val === item.value) {
-                    label = item.label
-                    return true
-                }
-                return false
-            })
+            return this.value == null || this.value === ''
+        },
+        selectedLabel() {
+            let label = this.placeholder
+            if (this.multiple && Array.isArray(this.value) && this.value.length) {
+                this.options.some((item) => {
+                    if (this.value.indexOf(item.value) > -1) {
+                        label = item.label
+                        return true
+                    }
+                    return false
+                })
+            } else {
+                this.options.some((item) => {
+                    if (this.value === item.value) {
+                        label = item.label
+                        return true
+                    }
+                    return false
+                })
+            }
 
             return label
         },
@@ -123,7 +141,7 @@ export default {
             this.selectedLabel = text
         },
         handleClick() {
-            this.dropdownVisible = true
+            this.dropdownVisible = !this.dropdownVisible
         },
         handleClose() {
             this.dropdownVisible = false

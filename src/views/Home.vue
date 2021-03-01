@@ -73,25 +73,43 @@
                 </div>
 
             </div>
-            <div class="demo-item">
+            <row>
                 <h2>select</h2>
-                <w-select style="width:200px" v-model="selectValue">
-                    <w-select-option v-for="option in selectOptions"
-                                     :key="option.value" :value="option.value"
-                                     :label="option.label">
-                    </w-select-option>
-                </w-select>
+                <cell>
+                    <w-select style="width:200px" v-model="selectValue">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                </cell>
                 多选
-                <w-select style="width:200px" multiple v-model="selectValues">
-                    <w-select-option v-for="option in selectOptions"
-                                     :key="option.value" :value="option.value"
-                                     :label="option.label">
-                    </w-select-option>
-                </w-select>
-                <div class="row">
-                    <w-button @click="handleChangeOptions">改变options</w-button>
-                </div>
-            </div>
+                <cell>
+                    <w-select style="width:200px" multiple
+                              v-model="selectValues">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                </cell>
+                <cell>
+                    <w-select style="width:200px" multiple plain
+                              placeholder="请选择" v-model="selectValues">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                </cell>
+                <row>
+                    <w-button @click="handleChangeOptions">改变options
+                    </w-button>
+                </row>
+            </row>
             <div class="demo-item"></div>
             <div class="demo-item"></div>
             <div class="demo-item"></div>
@@ -113,7 +131,30 @@
 <script>
 export default {
     name: 'Home',
-    components: {},
+    components: {
+        row: {
+            render(h) {
+                return h(
+                    'div',
+                    {
+                        class: ['row', {}],
+                    },
+                    [this.$slots.default]
+                )
+            },
+        },
+        cell: {
+            render(h) {
+                return h(
+                    'div',
+                    {
+                        class: ['cell', {}],
+                    },
+                    [this.$slots.default]
+                )
+            },
+        },
+    },
     data() {
         return {
             radio: 'beijing',
@@ -128,7 +169,7 @@ export default {
                 },
                 {
                     value: 'guangzhou',
-                    label: '广州',
+                    label: '广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州',
                 },
                 {
                     value: 'shanghai',
@@ -170,6 +211,10 @@ export default {
     width: 100vw;
     display: flex;
     .row {
+        padding: 10px 0;
+    }
+    .cell {
+        display: inline-flex;
         padding: 5px;
     }
     .data {
