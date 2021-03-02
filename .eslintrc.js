@@ -8,6 +8,7 @@ module.exports = {
         parser: 'babel-eslint',
     },
     rules: {
+        'consistent-return': 'off',
         'prefer-destructuring': 'off',
         'no-underscore-dangle': 'off',
         'linebreak-style': 'off',

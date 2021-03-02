@@ -1,4 +1,4 @@
-class Popup {
+class WatchDomResize {
     constructor(el, callback) {
         this._callback = callback
         this._scroller = null
@@ -57,4 +57,4 @@ class Popup {
     }
 }
 
-export default Popup
+export default WatchDomResize

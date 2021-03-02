@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Popup from '../../utils/popup'
+import DomPositionWatcher from '../../utils/domPositionWatcher'
 
 export default {
     props: {
@@ -40,7 +40,7 @@ export default {
     mounted() {
         document.body.append(this.$el)
         this.select.popperElm = this.$el
-        this.popup = new Popup(this.select.$el, this.handleResize)
+        this.domPositionWatcher = new DomPositionWatcher(this.select.$el, this.handleResize)
     },
     methods: {
         handleResize() {
@@ -53,8 +53,8 @@ export default {
         },
     },
     beforeDestroy() {
-        if (this.popup) {
-            this.popup.destroy()
+        if (this.domPositionWatcher) {
+            this.domPositionWatcher.destroy()
         }
     },
 }

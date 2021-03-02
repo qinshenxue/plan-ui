@@ -1,20 +1,25 @@
 import Vue from 'vue'
-import button from './components/button/button.vue'
-import input from './components/input/input.vue'
-import select from './components/select/select.vue'
-import progress from './components/progress/progress.vue'
-import selectOption from './components/select/select-option.vue'
-import radioGroup from './components/radio/radio-group.vue'
-import radioButton from './components/radio/radio-button.vue'
+import Button from './components/button/button.vue'
+import Dialog from './components/dialog/dialog.vue'
+import Input from './components/input/input.vue'
+import Message from './components/message/message'
+import Select from './components/select/select.vue'
+import Progress from './components/progress/progress.vue'
+import SelectOption from './components/select/select-option.vue'
+import RadioGroup from './components/radio/radio-group.vue'
+import RadioButton from './components/radio/radio-button.vue'
+
+const components = [Button, Input, Dialog, Select, Progress, SelectOption, RadioGroup, RadioButton]
 
 function install() {
-    Vue.component(button.name, button)
-    Vue.component(input.name, input)
-    Vue.component(progress.name, progress)
-    Vue.component(radioGroup.name, radioGroup)
-    Vue.component(radioButton.name, radioButton)
-    Vue.component(select.name, select)
-    Vue.component(selectOption.name, selectOption)
+    components.forEach((component) => {
+        Vue.component(component.name, component)
+    })
+
+    Vue.prototype.$message = Message
 }
 
-export default install
+export default {
+    install,
+    Message,
+}

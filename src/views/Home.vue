@@ -136,8 +136,57 @@
                 &emsp;
                 <w-button @click="progressValue-=10">progressValue--</w-button>
             </row>
-            <row></row>
-            <row></row>
+            <row>
+                <h2>message</h2>
+                <row>
+                    <cell>
+                        <w-button type="primary"
+                                  @click="$message.success('成功消息')">
+                            成功消息</w-button>
+                    </cell>
+                    <cell>
+                        <w-button type="primary"
+                                  @click="$message.error('错误消息')">
+                            错误消息</w-button>
+                    </cell>
+                </row>
+            </row>
+            <row>
+                <h2>dialog</h2>
+                <row :key="key1">
+                    <cell>
+                        <w-button type="primary"
+                                  @click="dialogVisible=!dialogVisible">
+                            对话框</w-button>
+
+                    </cell>
+                    <cell>
+                        <w-button type="primary" @click="++key1">
+                            测试重新渲染</w-button>
+                    </cell>
+                    <w-dialog title="对话框第1层（最外层）" :visible.sync="dialogVisible">
+                        <w-button @click="dialogVisible1=true">对话框第1层（最外层）
+                        </w-button>
+                        <w-button type="primary"
+                                  @click="$message.error('错误消息对话框第1层（最外层）')">
+                            错误消息</w-button>
+                    </w-dialog>
+                    <w-dialog title="对话框第2层" :visible.sync="dialogVisible1">
+                        <w-button @click="dialogVisible2=true">对话框第2层</w-button>
+                        <w-button type="primary"
+                                  @click="$message.error('对话框第2层')">
+                            错误消息</w-button>
+                    </w-dialog>
+                    <w-dialog title="对话框第3层" :visible.sync="dialogVisible2">
+                        对话框第3层
+                        <w-button type="primary"
+                                  @click="$message.error('对话框第3层')">
+                            错误消息</w-button>
+                    </w-dialog>
+                    <cell>
+                    </cell>
+                </row>
+            </row>
             <row></row>
 
         </div>
@@ -193,6 +242,10 @@ export default {
                 },
             ],
             progressValue: 50,
+            dialogVisible: false,
+            dialogVisible1: false,
+            dialogVisible2: false,
+            key1: 0,
         }
     },
     methods: {
@@ -228,7 +281,6 @@ body {
     margin: 0;
 }
 .home {
-    width: 100vw;
     display: flex;
     min-height: 100vh;
     .row {
