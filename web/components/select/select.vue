@@ -1,15 +1,15 @@
 <template>
-    <div class="el-select" :class="{
-        'el-select--dropdown':dropdownVisible,
-        'el-select--plain':plain,
-        'el-select--placeholder':isEmptyValue
-    }" v-clickoutside="handleClose">
-        <div class="el-select__label" @click="handleClick">
-            <div class="el-select__label-inner">{{selectedLabel}}
+    <div class="w-select" :class="[{
+        'w-select--dropdown':dropdownVisible,
+        'w-select--plain':plain,
+        'w-select--placeholder':isEmptyValue
+    },size?'w-select--'+size:'']" v-clickoutside="handleClose">
+        <div class="w-select__label" @click="handleClick">
+            <div class="w-select__label-inner">{{selectedLabel}}
             </div>
-            <div class="el-selet__label-multiple"
+            <div class="w-selet__label-multiple"
                  v-if="multiple && value.length>1">等{{value.length}}个</div>
-            <div class="el-select__arrow"></div>
+            <div class="w-select__arrow"></div>
         </div>
         <selectDropdown :visible.sync="dropdownVisible">
             <slot></slot>
@@ -32,12 +32,13 @@ export default {
         value: [String, Number, Array],
         multiple: Boolean,
         plain: Boolean,
+        size: String,
     },
     data() {
         return {
             options: [],
             dropdownVisible: false,
-            selectedValue: this.value,
+            selectedValue: this.initSelectedValue(this.value),
         }
     },
     computed: {
@@ -72,7 +73,7 @@ export default {
     },
     watch: {
         value(v) {
-            this.selectedValue = v
+            this.selectedValue = this.initSelectedValue(v)
         },
         options(v) {
             if (this.multiple) {
@@ -134,9 +135,26 @@ export default {
                 this.handleClose()
             }
             this.$emit('input', this.selectedValue)
+            this.$emit(
+                'change',
+                this.selectedValue,
+                this.multiple ? this.value.slice() : this.value
+            )
         })
     },
     methods: {
+        initSelectedValue(v) {
+            if (this.multiple) {
+                if (Array.isArray(v)) {
+                    return v.slice()
+                }
+                return []
+            }
+            if (typeof v === 'string' && typeof v === 'number') {
+                return v
+            }
+            return ''
+        },
         setSelectedLabel(text) {
             this.selectedLabel = text
         },

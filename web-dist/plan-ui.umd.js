@@ -2812,23 +2812,26 @@ message_Message.closeAll = function messageCloseAll() {
 };
 
 /* harmony default export */ var message = (message_Message);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select.vue?vue&type=template&id=71fc600e&
-var selectvue_type_template_id_71fc600e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"el-select",class:{
-    'el-select--dropdown':_vm.dropdownVisible,
-    'el-select--plain':_vm.plain,
-    'el-select--placeholder':_vm.isEmptyValue
-}},[_c('div',{staticClass:"el-select__label",on:{"click":_vm.handleClick}},[_c('div',{staticClass:"el-select__label-inner"},[_vm._v(_vm._s(_vm.selectedLabel)+" ")]),(_vm.multiple && _vm.value.length>1)?_c('div',{staticClass:"el-selet__label-multiple"},[_vm._v("等"+_vm._s(_vm.value.length)+"个")]):_vm._e(),_c('div',{staticClass:"el-select__arrow"})]),_c('selectDropdown',{attrs:{"visible":_vm.dropdownVisible},on:{"update:visible":function($event){_vm.dropdownVisible=$event}}},[_vm._t("default")],2)],1)}
-var selectvue_type_template_id_71fc600e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select.vue?vue&type=template&id=1f859387&
+var selectvue_type_template_id_1f859387_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"w-select",class:[{
+    'w-select--dropdown':_vm.dropdownVisible,
+    'w-select--plain':_vm.plain,
+    'w-select--placeholder':_vm.isEmptyValue
+},_vm.size?'w-select--'+_vm.size:'']},[_c('div',{staticClass:"w-select__label",on:{"click":_vm.handleClick}},[_c('div',{staticClass:"w-select__label-inner"},[_vm._v(_vm._s(_vm.selectedLabel)+" ")]),(_vm.multiple && _vm.value.length>1)?_c('div',{staticClass:"w-selet__label-multiple"},[_vm._v("等"+_vm._s(_vm.value.length)+"个")]):_vm._e(),_c('div',{staticClass:"w-select__arrow"})]),_c('selectDropdown',{attrs:{"visible":_vm.dropdownVisible},on:{"update:visible":function($event){_vm.dropdownVisible=$event}}},[_vm._t("default")],2)],1)}
+var selectvue_type_template_id_1f859387_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./web/components/select/select.vue?vue&type=template&id=71fc600e&
+// CONCATENATED MODULE: ./web/components/select/select.vue?vue&type=template&id=1f859387&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-dropdown.vue?vue&type=template&id=5c469fdb&
-var select_dropdownvue_type_template_id_5c469fdb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"w-select-dropdown",style:(_vm.style)},[_vm._t("default")],2)}
-var select_dropdownvue_type_template_id_5c469fdb_staticRenderFns = []
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
+var es_array_slice = __webpack_require__("fb6a");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-dropdown.vue?vue&type=template&id=a90930dc&
+var select_dropdownvue_type_template_id_a90930dc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"w-select-dropdown",style:(_vm.style)},[_vm._t("default")],2)}
+var select_dropdownvue_type_template_id_a90930dc_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./web/components/select/select-dropdown.vue?vue&type=template&id=5c469fdb&
+// CONCATENATED MODULE: ./web/components/select/select-dropdown.vue?vue&type=template&id=a90930dc&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/classCallCheck/_index.mjs
 function _classCallCheck(instance, Constructor) {
@@ -2984,7 +2987,7 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
     visible: function visible(v) {
       if (v) {
         this.handleResize();
-        this.popup.init(this.select.$el);
+        this.domPositionWatcher.init(this.select.$el);
       }
     }
   },
@@ -3021,8 +3024,8 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
 
 var select_dropdown_component = normalizeComponent(
   select_select_dropdownvue_type_script_lang_js_,
-  select_dropdownvue_type_template_id_5c469fdb_render,
-  select_dropdownvue_type_template_id_5c469fdb_staticRenderFns,
+  select_dropdownvue_type_template_id_a90930dc_render,
+  select_dropdownvue_type_template_id_a90930dc_staticRenderFns,
   false,
   null,
   null,
@@ -3108,6 +3111,7 @@ function createDocumentHandler(el, binding, vnode) {
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select.vue?vue&type=script&lang=js&
 
 
+
 //
 //
 //
@@ -3141,13 +3145,14 @@ function createDocumentHandler(el, binding, vnode) {
     placeholder: String,
     value: [String, Number, Array],
     multiple: Boolean,
-    plain: Boolean
+    plain: Boolean,
+    size: String
   },
   data: function data() {
     return {
       options: [],
       dropdownVisible: false,
-      selectedValue: this.value
+      selectedValue: this.initSelectedValue(this.value)
     };
   },
   computed: {
@@ -3188,7 +3193,7 @@ function createDocumentHandler(el, binding, vnode) {
   },
   watch: {
     value: function value(v) {
-      this.selectedValue = v;
+      this.selectedValue = this.initSelectedValue(v);
     },
     options: function options(v) {
       var _this2 = this;
@@ -3275,9 +3280,26 @@ function createDocumentHandler(el, binding, vnode) {
       }
 
       _this3.$emit('input', _this3.selectedValue);
+
+      _this3.$emit('change', _this3.selectedValue, _this3.multiple ? _this3.value.slice() : _this3.value);
     });
   },
   methods: {
+    initSelectedValue: function initSelectedValue(v) {
+      if (this.multiple) {
+        if (Array.isArray(v)) {
+          return v.slice();
+        }
+
+        return [];
+      }
+
+      if (typeof v === 'string' && typeof v === 'number') {
+        return v;
+      }
+
+      return '';
+    },
     setSelectedLabel: function setSelectedLabel(text) {
       this.selectedLabel = text;
     },
@@ -3301,8 +3323,8 @@ function createDocumentHandler(el, binding, vnode) {
 
 var select_component = normalizeComponent(
   select_selectvue_type_script_lang_js_,
-  selectvue_type_template_id_71fc600e_render,
-  selectvue_type_template_id_71fc600e_staticRenderFns,
+  selectvue_type_template_id_1f859387_render,
+  selectvue_type_template_id_1f859387_staticRenderFns,
   false,
   null,
   null,
@@ -3723,6 +3745,61 @@ function install() {
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (web);
 
+
+
+/***/ }),
+
+/***/ "fb6a":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var isObject = __webpack_require__("861d");
+var isArray = __webpack_require__("e8b5");
+var toAbsoluteIndex = __webpack_require__("23cb");
+var toLength = __webpack_require__("50c4");
+var toIndexedObject = __webpack_require__("fc6a");
+var createProperty = __webpack_require__("8418");
+var wellKnownSymbol = __webpack_require__("b622");
+var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+
+var SPECIES = wellKnownSymbol('species');
+var nativeSlice = [].slice;
+var max = Math.max;
+
+// `Array.prototype.slice` method
+// https://tc39.es/ecma262/#sec-array.prototype.slice
+// fallback for not array-like ES3 strings and DOM objects
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  slice: function slice(start, end) {
+    var O = toIndexedObject(this);
+    var length = toLength(O.length);
+    var k = toAbsoluteIndex(start, length);
+    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+    var Constructor, result, n;
+    if (isArray(O)) {
+      Constructor = O.constructor;
+      // cross-realm fallback
+      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
+        Constructor = undefined;
+      } else if (isObject(Constructor)) {
+        Constructor = Constructor[SPECIES];
+        if (Constructor === null) Constructor = undefined;
+      }
+      if (Constructor === Array || Constructor === undefined) {
+        return nativeSlice.call(O, k, fin);
+      }
+    }
+    result = new (Constructor === undefined ? Array : Constructor)(max(fin - k, 0));
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+    result.length = n;
+    return result;
+  }
+});
 
 
 /***/ }),

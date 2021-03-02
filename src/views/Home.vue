@@ -68,19 +68,49 @@
             </row>
             <row>
                 <h2>select</h2>
-                <cell>
-                    <w-select style="width:200px" v-model="selectValue">
+                <row>
+                    default： <w-select style="width:200px"
+                              v-model="selectValue" @change="handleChange">
                         <w-select-option v-for="option in selectOptions"
                                          :key="option.value"
                                          :value="option.value"
                                          :label="option.label">
                         </w-select-option>
                     </w-select>
-                </cell>
+                    large：
+                    <w-select style="width:200px" v-model="selectValue"
+                              size="large">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                    small：
+                    <w-select style="width:200px" v-model="selectValue"
+                              size="small">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                    mini：
+                    <w-select style="width:200px" v-model="selectValue"
+                              size="mini">
+                        <w-select-option v-for="option in selectOptions"
+                                         :key="option.value"
+                                         :value="option.value"
+                                         :label="option.label">
+                        </w-select-option>
+                    </w-select>
+
+                </row>
+
                 多选
                 <cell>
                     <w-select style="width:200px" multiple
-                              v-model="selectValues">
+                              v-model="selectValues" @change="handleChange">
                         <w-select-option v-for="option in selectOptions"
                                          :key="option.value"
                                          :value="option.value"
@@ -89,6 +119,7 @@
                     </w-select>
                 </cell>
                 <cell>
+                    plain:
                     <w-select style="width:200px" multiple plain
                               placeholder="请选择" v-model="selectValues">
                         <w-select-option v-for="option in selectOptions"
@@ -222,7 +253,7 @@ export default {
     data() {
         return {
             radio: 'beijing',
-            radioChangeArgs: [],
+            changeEventArgs: [],
             buttonClickArgs: null,
             selectValue: 'beijing',
             selectValues: [],
@@ -266,8 +297,7 @@ export default {
             ]
         },
         handleChange(...args) {
-            console.log('页面接受', this.radio)
-            this.radioChangeArgs = args
+            this.changeEventArgs = args
         },
         handleButtonClick(e) {
             this.buttonClickArgs = e.pageX

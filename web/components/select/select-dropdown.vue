@@ -33,7 +33,7 @@ export default {
         visible(v) {
             if (v) {
                 this.handleResize()
-                this.popup.init(this.select.$el)
+                this.domPositionWatcher.init(this.select.$el)
             }
         },
     },
