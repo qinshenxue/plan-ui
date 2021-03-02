@@ -2,67 +2,60 @@
     <div class="home">
         <pre class="data">{{$data}}</pre>
         <div class="demo">
-            <div class="demo-item">
-                <w-radio-group v-model="radio" size="mini"
-                               @change="handleChange">
-                    <w-radio-button value="beijing">北京</w-radio-button>
-                    <w-radio-button value="shanghai">上海</w-radio-button>
-                    <w-radio-button value="guangzhou">广州</w-radio-button>
-                </w-radio-group>
-            </div>
-            <div class="demo-item">
-                <w-radio-group v-model="radio" size="small"
-                               @change="handleChange">
-                    <w-radio-button value="beijing">北京</w-radio-button>
-                    <w-radio-button value="shanghai">上海</w-radio-button>
-                    <w-radio-button value="guangzhou">广州</w-radio-button>
-                </w-radio-group>
-            </div>
+            <row>
+                <h2>radio group</h2>
+                <cell>
+                    <w-radio-group v-model="radio" size="mini"
+                                   @change="handleChange">
+                        <w-radio-button value="beijing">北京</w-radio-button>
+                        <w-radio-button value="shanghai">上海</w-radio-button>
+                        <w-radio-button value="guangzhou">广州</w-radio-button>
+                    </w-radio-group>
+                </cell>
+                <cell>
+                    <w-radio-group v-model="radio" large @change="handleChange">
+                        <w-radio-button value="beijing">北京</w-radio-button>
+                        <w-radio-button value="shanghai">上海</w-radio-button>
+                        <w-radio-button value="guangzhou">广州</w-radio-button>
+                    </w-radio-group>
+                </cell>
 
-            <div class="demo-item">
-                <w-radio-group v-model="radio" @change="handleChange">
-                    <w-radio-button value="beijing">北京</w-radio-button>
-                    <w-radio-button value="shanghai">上海</w-radio-button>
-                    <w-radio-button value="guangzhou">广州</w-radio-button>
-                </w-radio-group>
-            </div>
-
-            <div class="demo-item">
-                <w-radio-group v-model="radio" large @change="handleChange">
-                    <w-radio-button value="beijing">北京</w-radio-button>
-                    <w-radio-button value="shanghai">上海</w-radio-button>
-                    <w-radio-button value="guangzhou">广州</w-radio-button>
-                </w-radio-group>
-            </div>
-
-            <div class="demo-item">
-                <w-button size="mini">默认按钮</w-button>&emsp;
-                <w-button size="small">默认按钮</w-button>&emsp;
-                <w-button>默认按钮</w-button>&emsp;
-                <w-button size="large">默认按钮</w-button>&emsp;
-            </div>
-            <div class="demo-item">
-                <w-button round @click="handleButtonClick">默认按钮</w-button>&emsp;
-                <w-button round type="primary" @click="handleButtonClick">默认按钮
-                </w-button>&emsp;
-                <w-button type="primary" @click="handleButtonClick">默认按钮
-                </w-button>
-                &emsp;
-                <w-button type="text" @click="handleButtonClick">文字按钮</w-button>
-                &emsp;
-            </div>
-            <div class="demo-item">
-                <h2>select</h2>
+            </row>
+            <row>
+                <h2>button</h2>
+                <cell>
+                    <w-button size="mini">默认按钮</w-button>
+                </cell>
+                <cell>
+                    <w-button size="small">默认按钮</w-button>
+                </cell>
+                <cell>
+                    <w-button>默认按钮</w-button>
+                </cell>
+                <cell>
+                    <w-button size="large">默认按钮</w-button>
+                </cell>
+                <cell>
+                    <w-button round @click="handleButtonClick">默认按钮</w-button>
+                </cell>
+                <cell>
+                    <w-button round type="primary" @click="handleButtonClick">
+                        默认按钮
+                    </w-button>
+                </cell>
+                <cell>
+                    <w-button type="primary" @click="handleButtonClick">默认按钮
+                    </w-button>
+                </cell>
+                <cell>
+                    <w-button type="text" @click="handleButtonClick">文字按钮
+                    </w-button>
+                </cell>
+            </row>
+            <row>
+                <h2>input</h2>
                 <div>
                     <w-input size="mini"></w-input>
-                </div>
-                <br>
-                <div>
-                    <w-input size="small"></w-input>
-                </div>
-                <br>
-                <div>
-                    <w-input></w-input>
                 </div>
                 <br>
                 <div>
@@ -72,7 +65,7 @@
                     </w-input>
                 </div>
 
-            </div>
+            </row>
             <row>
                 <h2>select</h2>
                 <cell>
@@ -110,27 +103,49 @@
                     </w-button>
                 </row>
             </row>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
-            <div class="demo-item"></div>
+            <row>
+                <h2>progress</h2>
+                <row>
+                    <w-progress :value="50"></w-progress>
+                </row>
+                <row>
+                    <w-progress :strokeWidth="10" :value="50"></w-progress>
+                </row>
+                <row>
+                    <w-progress :strokeWidth="10" :value="50" showText>
+                    </w-progress>
+                </row>
+                <row>
+                    <cell>
+                        <w-progress type="circle" :value="progressValue">
+                        </w-progress>
+                    </cell>
+                    <cell>
+                        <w-progress type="circle" :strokeWidth="10" showText
+                                    :value="progressValue">
+                        </w-progress>
+                    </cell>
+                    <cell>
+                        <w-progress type="circle" :strokeWidth="10" showText
+                                    :gradient="['#FF2900','#FFAA26']"
+                                    :value="progressValue">
+                        </w-progress>
+                    </cell>
+                </row>
+                <w-button @click="progressValue+=10">progressValue++</w-button>
+                &emsp;
+                <w-button @click="progressValue-=10">progressValue--</w-button>
+            </row>
+            <row></row>
+            <row></row>
+            <row></row>
+
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Home',
     components: {
         row: {
             render(h) {
@@ -169,13 +184,15 @@ export default {
                 },
                 {
                     value: 'guangzhou',
-                    label: '广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州',
+                    label:
+                        '广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州',
                 },
                 {
                     value: 'shanghai',
                     label: '上海',
                 },
             ],
+            progressValue: 50,
         }
     },
     methods: {
@@ -207,9 +224,13 @@ export default {
 </script>
 
 <style lang="less">
+body {
+    margin: 0;
+}
 .home {
     width: 100vw;
     display: flex;
+    min-height: 100vh;
     .row {
         padding: 10px 0;
     }
@@ -224,13 +245,12 @@ export default {
         box-sizing: border-box;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         background-color: #f1f1f1;
+        white-space: pre-wrap;
+        font-size: 13px;
     }
     .demo {
         padding: 30px;
         flex: 1;
-    }
-    .demo-item {
-        padding: 10px;
     }
 }
 </style>

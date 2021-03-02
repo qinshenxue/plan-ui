@@ -1,0 +1,48 @@
+.w-progress {
+    display: flex;
+    align-items: center;
+}
+.w-progress-bar {
+    flex: 1;
+    width: 100%;
+    height: 4px;
+    border-radius: 100000px;
+    background-color: #e7e7e7;
+}
+.w-progress-bar-inner {
+    height: 4px;
+    border-radius: 100000px;
+    background: #01c491;
+}
+.w-progress__text {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #999;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.w-progress-circle {
+    font-size: 0;
+}
+.w-progress-circle__track {
+    stroke: #e7e7e7;
+}
+
+.w-progress-circle__path--stroke {
+    stroke: @primary_color;
+}
+
+.w-progress--circle {
+    position: relative;
+    display: inline-flex;
+    .w-progress__text {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        transform: translateY(-50%);
+    }
+}
