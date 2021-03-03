@@ -10,7 +10,7 @@
             <i :class="iconClass" v-if="iconClass"></i>
             <i :class="typeClass" v-else></i>
             <slot>
-                <p v-html="message" class="w-message__content"></p>
+                <div v-html="message" class="w-message__content"></div>
             </slot>
             <i v-if="showClose" class="w-message__close el-icon-close"
                @click="close"></i>

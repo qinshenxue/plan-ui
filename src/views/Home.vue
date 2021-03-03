@@ -3,6 +3,17 @@
         <pre class="data">{{$data}}</pre>
         <div class="demo">
             <row>
+                <h2>select 顶层测试</h2>
+                <row>
+                    <w-select multiple style="width:200px" placeholder="请选择"
+                              v-model="selectValues">
+                        <w-select-option v-for="option in 1000" :key="option"
+                                         :value="option" :label="option+''">
+                        </w-select-option>
+                    </w-select>
+                </row>
+            </row>
+            <row>
                 <h2>radio group</h2>
                 <cell>
                     <w-radio-group v-model="radio" size="mini"
@@ -69,8 +80,8 @@
             <row>
                 <h2>select</h2>
                 <row>
-                    default： <w-select style="width:200px"
-                              v-model="selectValue" @change="handleChange">
+                    default： <w-select style="width:200px" v-model="selectValue"
+                              @change="handleChange">
                         <w-select-option v-for="option in selectOptions"
                                          :key="option.value"
                                          :value="option.value"
@@ -120,8 +131,8 @@
                 </cell>
                 <cell>
                     plain:
-                    <w-select style="width:200px" multiple plain
-                              placeholder="请选择" v-model="selectValues">
+                    <w-select multiple plain placeholder="请选择"
+                              v-model="selectValues">
                         <w-select-option v-for="option in selectOptions"
                                          :key="option.value"
                                          :value="option.value"
@@ -129,6 +140,23 @@
                         </w-select-option>
                     </w-select>
                 </cell>
+                <row>
+                    超长数据:
+                    <w-select multiple style="width:200px" placeholder="请选择"
+                              v-model="selectValues">
+                        <w-select-option v-for="option in 1000" :key="option"
+                                         :value="option" :label="option+''">
+                        </w-select-option>
+                    </w-select>
+
+                    超长数据plain:
+                    <w-select multiple plain placeholder="请选择"
+                              :dropdownWidth="200" v-model="selectValues">
+                        <w-select-option v-for="option in 1000" :key="option"
+                                         :value="option" :label="option+''">
+                        </w-select-option>
+                    </w-select>
+                </row>
                 <row>
                     <w-button @click="handleChangeOptions">改变options
                     </w-button>
@@ -333,6 +361,8 @@ body {
     .demo {
         padding: 30px;
         flex: 1;
+        height: 100vh;
+        overflow-y: auto;
     }
 }
 </style>

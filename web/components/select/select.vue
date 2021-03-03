@@ -11,7 +11,8 @@
                  v-if="multiple && value.length>1">等{{value.length}}个</div>
             <div class="w-select__arrow"></div>
         </div>
-        <selectDropdown :visible.sync="dropdownVisible">
+        <selectDropdown ref="dropdown" :class="dropdownClass"
+                        :visible.sync="dropdownVisible">
             <slot></slot>
         </selectDropdown>
     </div>
@@ -28,6 +29,8 @@ export default {
     },
     components: { selectDropdown },
     props: {
+        dropdownWidth: [Number],
+        dropdownClass: [String, Array],
         placeholder: String,
         value: [String, Number, Array],
         multiple: Boolean,
@@ -74,6 +77,11 @@ export default {
     watch: {
         value(v) {
             this.selectedValue = this.initSelectedValue(v)
+            // if (this.plain) {
+            //     this.$nextTick(function () {
+            //         this.$refs.dropdown.handleResize()
+            //     })
+            // }
         },
         options(v) {
             if (this.multiple) {
@@ -150,7 +158,7 @@ export default {
                 }
                 return []
             }
-            if (typeof v === 'string' && typeof v === 'number') {
+            if (typeof v === 'string' || typeof v === 'number') {
                 return v
             }
             return ''

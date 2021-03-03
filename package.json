@@ -1,6 +1,6 @@
 {
     "name": "plan-ui",
-    "version": "0.6.0",
+    "version": "0.10.0",
     "main": "web-dist/plan-ui.umd.js",
     "files": [
         "web-dist",

@@ -45,11 +45,20 @@ export default {
     methods: {
         handleResize() {
             const rect = this.select.$el.getBoundingClientRect()
-            this.style = {
+            const maxHeight = window.innerHeight - rect.bottom
+            const style = {
                 top: `${rect.bottom}px`,
-                left: `${rect.left}px`,
-                width: `${rect.width}px`,
+                maxHeight: `${Math.min(200, maxHeight - 20)}px`,
             }
+
+            if (this.select.plain) {
+                style.right = `${window.innerWidth - rect.right}px`
+                style.width = `${this.select.dropdownWidth}px`
+            } else {
+                style.left = `${rect.left}px`
+                style.width = `${rect.width}px`
+            }
+            this.style = style
         },
     },
     beforeDestroy() {
