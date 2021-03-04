@@ -1,7 +1,8 @@
 <template>
     <transition name="w-dialog-fade" @after-enter="afterEnter"
                 @after-leave="afterLeave">
-        <div v-show="visible" class="w-dialog__wrapper" v-z-index="visible">
+        <div v-show="visible" class="w-dialog__wrapper"
+             v-z-index.modal="visible">
             <div :style="style" :key="key" :class="['w-dialog',  customClass]"
                  ref="dialog">
                 <div class="w-dialog__header">

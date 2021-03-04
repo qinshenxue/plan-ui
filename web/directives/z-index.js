@@ -22,6 +22,7 @@ export default {
             el,
             visible: binding.value,
             zIndex,
+            modal: binding.modifiers.modal,
         }
         createModal()
         store.push(storeItem)
@@ -30,14 +31,19 @@ export default {
         store.some((item) => {
             if (item.el === el) {
                 item.visible = binding.value
-                if (binding.value) {
-                    modal.style.display = ''
-                    modal.style.zIndex = item.zIndex - 1
-                } else {
+                if (item.visible) {
+                    const zIndex = ZIndexManager.nextZIndex()
+                    el.style.zIndex = zIndex
+                    item.zIndex = zIndex
+                    if (item.modal) {
+                        modal.style.display = ''
+                        modal.style.zIndex = zIndex - 1
+                    }
+                } else if (item.modal) {
                     let modalVisible = 'none'
                     for (let i = store.length - 1; i >= 0; i -= 1) {
                         const storeItem = store[i]
-                        if (storeItem.visible === true) {
+                        if (storeItem.modal && storeItem.visible === true) {
                             modal.style.zIndex = storeItem.zIndex - 1
                             modalVisible = ''
                             break

@@ -13,6 +13,9 @@ class WatchDomResize {
                 scroller = window
             }
             if (!this._scroller || (this._scroller && this._scroller !== scroller)) {
+                if (this._scroller) {
+                    this._scroller.removeEventListener('scroll', this._callback)
+                }
                 this._scroller = scroller
                 scroller.addEventListener('scroll', this._callback)
             }

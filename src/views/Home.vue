@@ -241,12 +241,28 @@
                         <w-button type="primary"
                                   @click="$message.error('对话框第3层')">
                             错误消息</w-button>
+                        <br>
+                        <w-select multiple style="width:200px" placeholder="请选择"
+                                  :dropdownWidth="200" v-model="selectValues">
+                            <w-select-option v-for="option in 1000"
+                                             :key="option" :value="option"
+                                             :label="option+''">
+                            </w-select-option>
+                        </w-select>
                     </w-dialog>
                     <cell>
                     </cell>
                 </row>
             </row>
-            <row></row>
+            <row>
+                <h2>底部测试区域</h2>
+                <w-select multiple style="width:200px" placeholder="请选择"
+                          :dropdownWidth="200" v-model="selectValues">
+                    <w-select-option v-for="option in 1000" :key="option"
+                                     :value="option" :label="option+''">
+                    </w-select-option>
+                </w-select>
+            </row>
 
         </div>
     </div>

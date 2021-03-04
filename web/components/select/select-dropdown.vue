@@ -1,13 +1,18 @@
 <template>
-    <div class="w-select-dropdown" v-show="visible" :style="style">
+    <div class="w-select-dropdown" v-show="visible" :style="style"
+         v-z-index="visible">
         <slot></slot>
     </div>
 </template>
 
 <script>
 import DomPositionWatcher from '../../utils/domPositionWatcher'
+import zIndex from '../../directives/z-index'
 
 export default {
+    directives: {
+        zIndex,
+    },
     props: {
         visible: Boolean,
     },
@@ -32,24 +37,37 @@ export default {
     watch: {
         visible(v) {
             if (v) {
+                if (!this.domPositionWatcher) {
+                    this.init()
+                }
                 this.handleResize()
                 this.domPositionWatcher.init(this.select.$el)
             }
         },
     },
     mounted() {
-        document.body.append(this.$el)
-        this.select.popperElm = this.$el
-        this.domPositionWatcher = new DomPositionWatcher(this.select.$el, this.handleResize)
+        if (this.visible) {
+            this.init()
+        }
     },
     methods: {
+        init() {
+            document.body.append(this.$el)
+            this.select.popperElm = this.$el
+            this.domPositionWatcher = new DomPositionWatcher(this.select.$el, this.handleResize)
+        },
         handleResize() {
             const rect = this.select.$el.getBoundingClientRect()
-            const maxHeight = window.innerHeight - rect.bottom
-            const style = {
-                top: `${rect.bottom}px`,
-                maxHeight: `${Math.min(200, maxHeight - 20)}px`,
+            const style = {}
+            const topSpace = rect.top
+            const winHeight = window.innerHeight
+            const bottomSpace = winHeight - rect.bottom
+            if (bottomSpace < 200 && bottomSpace < topSpace) {
+                style.bottom = `${winHeight - rect.top}px`
+            } else {
+                style.top = `${rect.bottom}px`
             }
+            style.maxHeight = `${Math.min(200, Math.max(topSpace, bottomSpace))}px`
 
             if (this.select.plain) {
                 style.right = `${window.innerWidth - rect.right}px`
