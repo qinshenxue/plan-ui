@@ -30,28 +30,29 @@ export default {
     update(el, binding) {
         store.some((item) => {
             if (item.el === el) {
-                item.visible = binding.value
-                if (item.visible) {
-                    const zIndex = ZIndexManager.nextZIndex()
-                    el.style.zIndex = zIndex
-                    item.zIndex = zIndex
-                    if (item.modal) {
-                        modal.style.display = ''
-                        modal.style.zIndex = zIndex - 1
-                    }
-                } else if (item.modal) {
-                    let modalVisible = 'none'
-                    for (let i = store.length - 1; i >= 0; i -= 1) {
-                        const storeItem = store[i]
-                        if (storeItem.modal && storeItem.visible === true) {
-                            modal.style.zIndex = storeItem.zIndex - 1
-                            modalVisible = ''
-                            break
+                if (binding.value !== item.visible) {
+                    item.visible = binding.value
+                    if (item.visible) {
+                        const zIndex = ZIndexManager.nextZIndex()
+                        el.style.zIndex = zIndex
+                        item.zIndex = zIndex
+                        if (item.modal) {
+                            modal.style.display = ''
+                            modal.style.zIndex = zIndex - 1
                         }
+                    } else if (item.modal) {
+                        let modalVisible = 'none'
+                        for (let i = store.length - 1; i >= 0; i -= 1) {
+                            const storeItem = store[i]
+                            if (storeItem.modal && storeItem.visible === true) {
+                                modal.style.zIndex = storeItem.zIndex - 1
+                                modalVisible = ''
+                                break
+                            }
+                        }
+                        modal.style.display = modalVisible
                     }
-                    modal.style.display = modalVisible
                 }
-
                 return true
             }
             return false

@@ -1,6 +1,6 @@
 <template>
-    <div class="w-select-dropdown" v-show="visible" :style="style"
-         v-z-index="visible">
+    <div class="w-select-dropdown" v-z-index="visible" v-show="visible"
+         :style="style">
         <slot></slot>
     </div>
 </template>
@@ -41,7 +41,13 @@ export default {
                     this.init()
                 }
                 this.handleResize()
-                this.domPositionWatcher.init(this.select.$el)
+                if (this.select.plain) {
+                    //  fix 滚动条宽度问题
+                    this.$nextTick(() => {
+                        const rect = this.$el.getBoundingClientRect()
+                        this.style.minWidth = `${rect.width}px`
+                    })
+                }
             }
         },
     },
@@ -52,11 +58,14 @@ export default {
     },
     methods: {
         init() {
-            document.body.append(this.$el)
+            document.body.appendChild(this.$el)
             this.select.popperElm = this.$el
             this.domPositionWatcher = new DomPositionWatcher(this.select.$el, this.handleResize)
         },
         handleResize() {
+            if (!this.visible) {
+                return
+            }
             const rect = this.select.$el.getBoundingClientRect()
             const style = {}
             const topSpace = rect.top
@@ -67,11 +76,11 @@ export default {
             } else {
                 style.top = `${rect.bottom}px`
             }
-            style.maxHeight = `${Math.min(200, Math.max(topSpace, bottomSpace))}px`
 
             if (this.select.plain) {
                 style.right = `${window.innerWidth - rect.right}px`
-                style.width = `${this.select.dropdownWidth}px`
+                style.minWidth = `${rect.width}px`
+                style.maxWidth = `${this.select.dropdownWidth}px`
             } else {
                 style.left = `${rect.left}px`
                 style.width = `${rect.width}px`

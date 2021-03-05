@@ -2355,31 +2355,33 @@ function createModal() {
   update: function update(el, binding) {
     store.some(function (item) {
       if (item.el === el) {
-        item.visible = binding.value;
+        if (binding.value !== item.visible) {
+          item.visible = binding.value;
 
-        if (item.visible) {
-          var zIndex = zIndexManager.nextZIndex();
-          el.style.zIndex = zIndex;
-          item.zIndex = zIndex;
+          if (item.visible) {
+            var zIndex = zIndexManager.nextZIndex();
+            el.style.zIndex = zIndex;
+            item.zIndex = zIndex;
 
-          if (item.modal) {
-            modal.style.display = '';
-            modal.style.zIndex = zIndex - 1;
-          }
-        } else if (item.modal) {
-          var modalVisible = 'none';
-
-          for (var i = store.length - 1; i >= 0; i -= 1) {
-            var storeItem = store[i];
-
-            if (storeItem.modal && storeItem.visible === true) {
-              modal.style.zIndex = storeItem.zIndex - 1;
-              modalVisible = '';
-              break;
+            if (item.modal) {
+              modal.style.display = '';
+              modal.style.zIndex = zIndex - 1;
             }
-          }
+          } else if (item.modal) {
+            var modalVisible = 'none';
 
-          modal.style.display = modalVisible;
+            for (var i = store.length - 1; i >= 0; i -= 1) {
+              var storeItem = store[i];
+
+              if (storeItem.modal && storeItem.visible === true) {
+                modal.style.zIndex = storeItem.zIndex - 1;
+                modalVisible = '';
+                break;
+              }
+            }
+
+            modal.style.display = modalVisible;
+          }
         }
 
         return true;
@@ -2834,12 +2836,12 @@ var selectvue_type_template_id_51c60939_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__("fb6a");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-dropdown.vue?vue&type=template&id=7aca600d&
-var select_dropdownvue_type_template_id_7aca600d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"},{name:"z-index",rawName:"v-z-index",value:(_vm.visible),expression:"visible"}],staticClass:"w-select-dropdown",style:(_vm.style)},[_vm._t("default")],2)}
-var select_dropdownvue_type_template_id_7aca600d_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-dropdown.vue?vue&type=template&id=2b77b4d9&
+var select_dropdownvue_type_template_id_2b77b4d9_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"z-index",rawName:"v-z-index",value:(_vm.visible),expression:"visible"},{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"w-select-dropdown",style:(_vm.style)},[_vm._t("default")],2)}
+var select_dropdownvue_type_template_id_2b77b4d9_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./web/components/select/select-dropdown.vue?vue&type=template&id=7aca600d&
+// CONCATENATED MODULE: ./web/components/select/select-dropdown.vue?vue&type=template&id=2b77b4d9&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/classCallCheck/_index.mjs
 function _classCallCheck(instance, Constructor) {
@@ -3002,13 +3004,23 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
   },
   watch: {
     visible: function visible(v) {
+      var _this = this;
+
       if (v) {
         if (!this.domPositionWatcher) {
           this.init();
         }
 
         this.handleResize();
-        this.domPositionWatcher.init(this.select.$el);
+
+        if (this.select.plain) {
+          //  fix 滚动条宽度问题
+          this.$nextTick(function () {
+            var rect = _this.$el.getBoundingClientRect();
+
+            _this.style.minWidth = "".concat(rect.width, "px");
+          });
+        }
       }
     }
   },
@@ -3019,11 +3031,15 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
   },
   methods: {
     init: function init() {
-      document.body.append(this.$el);
+      document.body.appendChild(this.$el);
       this.select.popperElm = this.$el;
       this.domPositionWatcher = new domPositionWatcher(this.select.$el, this.handleResize);
     },
     handleResize: function handleResize() {
+      if (!this.visible) {
+        return;
+      }
+
       var rect = this.select.$el.getBoundingClientRect();
       var style = {};
       var topSpace = rect.top;
@@ -3036,11 +3052,10 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
         style.top = "".concat(rect.bottom, "px");
       }
 
-      style.maxHeight = "".concat(Math.min(200, Math.max(topSpace, bottomSpace)), "px");
-
       if (this.select.plain) {
         style.right = "".concat(window.innerWidth - rect.right, "px");
-        style.width = "".concat(this.select.dropdownWidth, "px");
+        style.minWidth = "".concat(rect.width, "px");
+        style.maxWidth = "".concat(this.select.dropdownWidth, "px");
       } else {
         style.left = "".concat(rect.left, "px");
         style.width = "".concat(rect.width, "px");
@@ -3067,8 +3082,8 @@ var domPositionWatcher_WatchDomResize = /*#__PURE__*/function () {
 
 var select_dropdown_component = normalizeComponent(
   select_select_dropdownvue_type_script_lang_js_,
-  select_dropdownvue_type_template_id_7aca600d_render,
-  select_dropdownvue_type_template_id_7aca600d_staticRenderFns,
+  select_dropdownvue_type_template_id_2b77b4d9_render,
+  select_dropdownvue_type_template_id_2b77b4d9_staticRenderFns,
   false,
   null,
   null,

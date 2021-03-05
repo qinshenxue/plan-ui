@@ -7,7 +7,7 @@
                 <row>
                     <w-select multiple style="width:200px" placeholder="请选择"
                               v-model="selectValues">
-                        <w-select-option v-for="option in 1000" :key="option"
+                        <w-select-option v-for="option in 100" :key="option"
                                          :value="option" :label="option+''">
                         </w-select-option>
                     </w-select>
@@ -132,11 +132,18 @@
                 <cell>
                     plain:
                     <w-select multiple plain placeholder="请选择"
-                              v-model="selectValues">
+                              :dropdownWidth="200" v-model="selectValues">
                         <w-select-option v-for="option in selectOptions"
                                          :key="option.value"
                                          :value="option.value"
                                          :label="option.label">
+                        </w-select-option>
+                    </w-select>
+                    plain：数据少
+                    <w-select multiple plain placeholder="请选择"
+                              :dropdownWidth="200" v-model="selectValues">
+                        <w-select-option v-for="option in 5" :key="option"
+                                         :value="option" :label="option+''">
                         </w-select-option>
                     </w-select>
                 </cell>
@@ -144,7 +151,7 @@
                     超长数据:
                     <w-select multiple style="width:200px" placeholder="请选择"
                               v-model="selectValues">
-                        <w-select-option v-for="option in 1000" :key="option"
+                        <w-select-option v-for="option in 100" :key="option"
                                          :value="option" :label="option+''">
                         </w-select-option>
                     </w-select>
@@ -152,8 +159,8 @@
                     超长数据plain:
                     <w-select multiple plain placeholder="请选择"
                               :dropdownWidth="200" v-model="selectValues">
-                        <w-select-option v-for="option in 1000" :key="option"
-                                         :value="option" :label="option+''">
+                        <w-select-option v-for="option in 100" :key="option"
+                                         :value="option" label="我是中国人">
                         </w-select-option>
                     </w-select>
                 </row>
@@ -243,10 +250,9 @@
                             错误消息</w-button>
                         <br>
                         <w-select multiple style="width:200px" placeholder="请选择"
-                                  :dropdownWidth="200" v-model="selectValues">
-                            <w-select-option v-for="option in 1000"
-                                             :key="option" :value="option"
-                                             :label="option+''">
+                                  v-model="selectValues">
+                            <w-select-option v-for="option in 100" :key="option"
+                                             :value="option" :label="option+''">
                             </w-select-option>
                         </w-select>
                     </w-dialog>
@@ -258,7 +264,7 @@
                 <h2>底部测试区域</h2>
                 <w-select multiple style="width:200px" placeholder="请选择"
                           :dropdownWidth="200" v-model="selectValues">
-                    <w-select-option v-for="option in 1000" :key="option"
+                    <w-select-option v-for="option in 100" :key="option"
                                      :value="option" :label="option+''">
                     </w-select-option>
                 </w-select>
