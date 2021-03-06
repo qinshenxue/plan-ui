@@ -1,0 +1,59 @@
+@primary_color: #227ffd;
+
+body {
+    background-color: #f3f5f8;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.plan-ui-top {
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px #f0f1f2;
+    position: relative;
+    z-index: 1;
+}
+.plan-ui-main {
+}
+.components-demo {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    min-height: calc(100vh - 80px);
+    .nav {
+        width: 300px;
+        height: 100%;
+        overflow-y: auto;
+        padding-top: 20px;
+        min-height: inherit;
+        align-items: stretch;
+
+        .nav-item {
+            padding: 15px 20px;
+            color: #444;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover {
+                background-color: fade(@primary_color, 5%);
+            }
+            &.router-link-active {
+                background-color: fade(@primary_color, 5%);
+                border-right: 4px solid @primary_color;
+                color: @primary_color;
+            }
+            + .nav-item {
+                margin-top: 2px;
+            }
+        }
+    }
+    .view {
+        flex: 1;
+        padding: 50px;
+        border-left: 1px solid #e5e5e5;
+    }
+}

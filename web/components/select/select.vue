@@ -119,7 +119,11 @@ export default {
     },
     created() {
         this.$on('add-option', (option) => {
-            this.options.push(option)
+            if (Array.isArray(option)) {
+                this.options = option
+            } else {
+                this.options.push(option)
+            }
         })
         this.$on('remove-option', (value) => {
             this.options.some((item, i) => {

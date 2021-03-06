@@ -2822,16 +2822,174 @@ message_Message.closeAll = function messageCloseAll() {
 };
 
 /* harmony default export */ var message = (message_Message);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select.vue?vue&type=template&id=51c60939&
-var selectvue_type_template_id_51c60939_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"w-select",class:[{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/progress/progress.vue?vue&type=template&id=37b67828&
+var progressvue_type_template_id_37b67828_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-progress",class:{
+'w-progress--circle':_vm.type==='circle',
+'w-progress--gradient':_vm.gradient
+}},[(_vm.type==='circle')?_c('div',{staticClass:"w-progress-circle"},[_c('svg',{style:({height: _vm.width + 'px', width: _vm.width + 'px'}),attrs:{"viewBox":"0 0 100 100"}},[(_vm.gradient)?_c('defs',[_c('linearGradient',{attrs:{"x1":"1","y1":"0","x2":"0","y2":"0","id":"gradient"}},[_c('stop',{attrs:{"offset":"0%","stop-color":_vm.gradient[0]}}),_c('stop',{attrs:{"offset":"100%","stop-color":_vm.gradient[1]}})],1)],1):_vm._e(),_c('path',{staticClass:"w-progress-circle__track",style:(_vm.trailPathStyle),attrs:{"d":_vm.trackPath,"stroke-width":_vm.relativeStrokeWidth,"fill":"none"}}),_c('path',{class:_vm.gradient?'':'w-progress-circle__path--stroke',style:(_vm.circlePathStyle),attrs:{"d":_vm.trackPath,"fill":"none","stroke-linecap":"round","stroke":_vm.gradient?'url(#gradient)':null,"stroke-width":_vm.value ? _vm.relativeStrokeWidth : 0}})])]):_c('div',{staticClass:"w-progress-bar",style:(_vm.barStyle)},[_c('div',{staticClass:"w-progress-bar-inner",style:(_vm.barInnerStyle)})]),(_vm.showText)?_c('div',{staticClass:"w-progress__text"},[_vm._t("default",[_vm._v(_vm._s(_vm.value)+"%")])],2):_vm._e()])}
+var progressvue_type_template_id_37b67828_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./web/components/progress/progress.vue?vue&type=template&id=37b67828&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.to-fixed.js
+var es_number_to_fixed = __webpack_require__("b680");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__("99af");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/progress/progress.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var progressvue_type_script_lang_js_ = ({
+  name: 'w-progress',
+  props: {
+    /**
+     * circle 圆形进度
+     */
+    type: String,
+    strokeWidth: {
+      type: Number,
+      default: 6
+    },
+    showText: Boolean,
+    value: Number,
+    width: {
+      type: Number,
+      default: 126
+    },
+
+    /**
+     * 渐变配置
+     * [#FF2900，#FFAA26]
+     */
+    gradient: Array
+  },
+  computed: {
+    barStyle: function barStyle() {
+      if (this.strokeWidth) {
+        return {
+          height: "".concat(this.strokeWidth, "px")
+        };
+      }
+
+      return null;
+    },
+    barInnerStyle: function barInnerStyle() {
+      var style = {};
+
+      if (this.value != null) {
+        style.width = "".concat(this.value, "%");
+      }
+
+      if (this.strokeWidth) {
+        style.height = "".concat(this.strokeWidth, "px");
+      }
+
+      return style;
+    },
+    relativeStrokeWidth: function relativeStrokeWidth() {
+      return (this.strokeWidth / this.width * 100).toFixed(1);
+    },
+    radius: function radius() {
+      if (this.type === 'circle') {
+        return parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
+      }
+
+      return 0;
+    },
+    trackPath: function trackPath() {
+      var radius = this.radius;
+      return "\n          M 50 50\n          m 0 -".concat(radius, "\n          a ").concat(radius, " ").concat(radius, " 0 1 1 0 ").concat(radius * 2, "\n          a ").concat(radius, " ").concat(radius, " 0 1 1 0 -").concat(radius * 2, "\n          ");
+    },
+    perimeter: function perimeter() {
+      return 2 * Math.PI * this.radius;
+    },
+    trailPathStyle: function trailPathStyle() {
+      return {
+        strokeDasharray: "".concat(this.perimeter, "px, ").concat(this.perimeter, "px")
+      };
+    },
+    circlePathStyle: function circlePathStyle() {
+      return {
+        strokeDasharray: "".concat(this.perimeter * (this.value / 100), "px, ").concat(this.perimeter, "px"),
+        transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
+      };
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {}
+});
+// CONCATENATED MODULE: ./web/components/progress/progress.vue?vue&type=script&lang=js&
+ /* harmony default export */ var progress_progressvue_type_script_lang_js_ = (progressvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./web/components/progress/progress.vue
+
+
+
+
+
+/* normalize component */
+
+var progress_component = normalizeComponent(
+  progress_progressvue_type_script_lang_js_,
+  progressvue_type_template_id_37b67828_render,
+  progressvue_type_template_id_37b67828_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var progress = (progress_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select.vue?vue&type=template&id=c932b8dc&
+var selectvue_type_template_id_c932b8dc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"clickoutside",rawName:"v-clickoutside",value:(_vm.handleClose),expression:"handleClose"}],staticClass:"w-select",class:[{
     'w-select--dropdown':_vm.dropdownVisible,
     'w-select--plain':_vm.plain,
     'w-select--placeholder':_vm.isEmptyValue
 },_vm.size?'w-select--'+_vm.size:'']},[_c('div',{staticClass:"w-select__label",on:{"click":_vm.handleClick}},[_c('div',{staticClass:"w-select__label-inner"},[_vm._v(_vm._s(_vm.selectedLabel)+" ")]),(_vm.multiple && _vm.value.length>1)?_c('div',{staticClass:"w-selet__label-multiple"},[_vm._v("等"+_vm._s(_vm.value.length)+"个")]):_vm._e(),_c('div',{staticClass:"w-select__arrow"})]),_c('selectDropdown',{ref:"dropdown",class:_vm.dropdownClass,attrs:{"visible":_vm.dropdownVisible},on:{"update:visible":function($event){_vm.dropdownVisible=$event}}},[_vm._t("default")],2)],1)}
-var selectvue_type_template_id_51c60939_staticRenderFns = []
+var selectvue_type_template_id_c932b8dc_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./web/components/select/select.vue?vue&type=template&id=51c60939&
+// CONCATENATED MODULE: ./web/components/select/select.vue?vue&type=template&id=c932b8dc&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__("fb6a");
@@ -3316,7 +3474,11 @@ function createDocumentHandler(el, binding, vnode) {
     var _this3 = this;
 
     this.$on('add-option', function (option) {
-      _this3.options.push(option);
+      if (Array.isArray(option)) {
+        _this3.options = option;
+      } else {
+        _this3.options.push(option);
+      }
     });
     this.$on('remove-option', function (value) {
       _this3.options.some(function (item, i) {
@@ -3388,8 +3550,8 @@ function createDocumentHandler(el, binding, vnode) {
 
 var select_component = normalizeComponent(
   select_selectvue_type_script_lang_js_,
-  selectvue_type_template_id_51c60939_render,
-  selectvue_type_template_id_51c60939_staticRenderFns,
+  selectvue_type_template_id_c932b8dc_render,
+  selectvue_type_template_id_c932b8dc_staticRenderFns,
   false,
   null,
   null,
@@ -3398,172 +3560,14 @@ var select_component = normalizeComponent(
 )
 
 /* harmony default export */ var select_select = (select_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/progress/progress.vue?vue&type=template&id=37b67828&
-var progressvue_type_template_id_37b67828_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-progress",class:{
-'w-progress--circle':_vm.type==='circle',
-'w-progress--gradient':_vm.gradient
-}},[(_vm.type==='circle')?_c('div',{staticClass:"w-progress-circle"},[_c('svg',{style:({height: _vm.width + 'px', width: _vm.width + 'px'}),attrs:{"viewBox":"0 0 100 100"}},[(_vm.gradient)?_c('defs',[_c('linearGradient',{attrs:{"x1":"1","y1":"0","x2":"0","y2":"0","id":"gradient"}},[_c('stop',{attrs:{"offset":"0%","stop-color":_vm.gradient[0]}}),_c('stop',{attrs:{"offset":"100%","stop-color":_vm.gradient[1]}})],1)],1):_vm._e(),_c('path',{staticClass:"w-progress-circle__track",style:(_vm.trailPathStyle),attrs:{"d":_vm.trackPath,"stroke-width":_vm.relativeStrokeWidth,"fill":"none"}}),_c('path',{class:_vm.gradient?'':'w-progress-circle__path--stroke',style:(_vm.circlePathStyle),attrs:{"d":_vm.trackPath,"fill":"none","stroke-linecap":"round","stroke":_vm.gradient?'url(#gradient)':null,"stroke-width":_vm.value ? _vm.relativeStrokeWidth : 0}})])]):_c('div',{staticClass:"w-progress-bar",style:(_vm.barStyle)},[_c('div',{staticClass:"w-progress-bar-inner",style:(_vm.barInnerStyle)})]),(_vm.showText)?_c('div',{staticClass:"w-progress__text"},[_vm._t("default",[_vm._v(_vm._s(_vm.value)+"%")])],2):_vm._e()])}
-var progressvue_type_template_id_37b67828_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./web/components/progress/progress.vue?vue&type=template&id=37b67828&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.to-fixed.js
-var es_number_to_fixed = __webpack_require__("b680");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/progress/progress.vue?vue&type=script&lang=js&
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ var progressvue_type_script_lang_js_ = ({
-  name: 'w-progress',
-  props: {
-    /**
-     * circle 圆形进度
-     */
-    type: String,
-    strokeWidth: {
-      type: Number,
-      default: 6
-    },
-    showText: Boolean,
-    value: Number,
-    width: {
-      type: Number,
-      default: 126
-    },
-
-    /**
-     * 渐变配置
-     * [#FF2900，#FFAA26]
-     */
-    gradient: Array
-  },
-  computed: {
-    barStyle: function barStyle() {
-      if (this.strokeWidth) {
-        return {
-          height: "".concat(this.strokeWidth, "px")
-        };
-      }
-
-      return null;
-    },
-    barInnerStyle: function barInnerStyle() {
-      var style = {};
-
-      if (this.value != null) {
-        style.width = "".concat(this.value, "%");
-      }
-
-      if (this.strokeWidth) {
-        style.height = "".concat(this.strokeWidth, "px");
-      }
-
-      return style;
-    },
-    relativeStrokeWidth: function relativeStrokeWidth() {
-      return (this.strokeWidth / this.width * 100).toFixed(1);
-    },
-    radius: function radius() {
-      if (this.type === 'circle') {
-        return parseInt(50 - parseFloat(this.relativeStrokeWidth) / 2, 10);
-      }
-
-      return 0;
-    },
-    trackPath: function trackPath() {
-      var radius = this.radius;
-      return "\n          M 50 50\n          m 0 -".concat(radius, "\n          a ").concat(radius, " ").concat(radius, " 0 1 1 0 ").concat(radius * 2, "\n          a ").concat(radius, " ").concat(radius, " 0 1 1 0 -").concat(radius * 2, "\n          ");
-    },
-    perimeter: function perimeter() {
-      return 2 * Math.PI * this.radius;
-    },
-    trailPathStyle: function trailPathStyle() {
-      return {
-        strokeDasharray: "".concat(this.perimeter, "px, ").concat(this.perimeter, "px")
-      };
-    },
-    circlePathStyle: function circlePathStyle() {
-      return {
-        strokeDasharray: "".concat(this.perimeter * (this.value / 100), "px, ").concat(this.perimeter, "px"),
-        transition: 'stroke-dasharray 0.6s ease 0s, stroke 0.6s ease'
-      };
-    }
-  },
-  data: function data() {
-    return {};
-  },
-  methods: {}
-});
-// CONCATENATED MODULE: ./web/components/progress/progress.vue?vue&type=script&lang=js&
- /* harmony default export */ var progress_progressvue_type_script_lang_js_ = (progressvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./web/components/progress/progress.vue
-
-
-
-
-
-/* normalize component */
-
-var progress_component = normalizeComponent(
-  progress_progressvue_type_script_lang_js_,
-  progressvue_type_template_id_37b67828_render,
-  progressvue_type_template_id_37b67828_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var progress = (progress_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-option.vue?vue&type=template&id=594b7b4a&
-var select_optionvue_type_template_id_594b7b4a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-select-option",class:{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-option.vue?vue&type=template&id=6747988f&
+var select_optionvue_type_template_id_6747988f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-select-option",class:{
     'is-active':_vm.isSelected
 },on:{"click":_vm.handleClick}},[_vm._t("default",[_vm._v(_vm._s(_vm.label))])],2)}
-var select_optionvue_type_template_id_594b7b4a_staticRenderFns = []
+var select_optionvue_type_template_id_6747988f_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./web/components/select/select-option.vue?vue&type=template&id=594b7b4a&
+// CONCATENATED MODULE: ./web/components/select/select-option.vue?vue&type=template&id=6747988f&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-option.vue?vue&type=script&lang=js&
 
@@ -3603,11 +3607,11 @@ var select_optionvue_type_template_id_594b7b4a_staticRenderFns = []
       return this.select.multiple;
     },
     isSelected: function isSelected() {
-      if (!this.isMultiple) {
-        return this.select.value === this.value;
+      if (this.isMultiple) {
+        return this.select.value.indexOf(this.value) > -1;
       }
 
-      return this.select.value.indexOf(this.value) > -1;
+      return this.select.value === this.value;
     }
   },
   created: function created() {
@@ -3637,8 +3641,8 @@ var select_optionvue_type_template_id_594b7b4a_staticRenderFns = []
 
 var select_option_component = normalizeComponent(
   select_select_optionvue_type_script_lang_js_,
-  select_optionvue_type_template_id_594b7b4a_render,
-  select_optionvue_type_template_id_594b7b4a_staticRenderFns,
+  select_optionvue_type_template_id_6747988f_render,
+  select_optionvue_type_template_id_6747988f_staticRenderFns,
   false,
   null,
   null,
@@ -3647,6 +3651,616 @@ var select_option_component = normalizeComponent(
 )
 
 /* harmony default export */ var select_option = (select_option_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-tree.vue?vue&type=template&id=aca2feec&
+var select_treevue_type_template_id_aca2feec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-select-tree"},[_c('tree',_vm._b({attrs:{"data":_vm.data,"multiple":_vm.isMultiple,"nodeDisabledMethod":_vm.nodeDisabledMethod},scopedSlots:_vm._u([{key:"default",fn:function(props){return [_vm._t("default",null,{"data":props.data})]}}],null,true),model:{value:(_vm.value),callback:function ($$v) {_vm.value=$$v},expression:"value"}},'tree',_vm.$attrs,false))],1)}
+var select_treevue_type_template_id_aca2feec_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./web/components/select/select-tree.vue?vue&type=template&id=aca2feec&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/tree/tree.vue?vue&type=template&id=e26744e8&
+var treevue_type_template_id_e26744e8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-tree"},_vm._l((_vm.treeData),function(nodeData,i){return _c('tree-node',{key:_vm.nodeKey && nodeData[_vm.nodeKey] || i,staticClass:"root-node",attrs:{"data":nodeData}})}),1)}
+var treevue_type_template_id_e26744e8_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./web/components/tree/tree.vue?vue&type=template&id=e26744e8&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/tree/tree-node.vue?vue&type=template&id=64c74dd4&
+var tree_nodevue_type_template_id_64c74dd4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-tree-node"},[_c('div',{staticClass:"w-tree-node__content",class:_vm.cls,style:({paddingLeft:_vm.gap+'px'})},[_c('div',{staticClass:"w-tree-node__icons"},[_c('div',{staticClass:"w-tree-node-fold-icon",class:{'is-expand':_vm.expand},on:{"click":function($event){$event.stopPropagation();return _vm._handleExpandClick($event)}}}),(_vm.tree.showCheckbox)?_c('div',{staticClass:"w-tree-node-checkbox",on:{"click":_vm._handleCheckboxClick}},[_c('div',{staticClass:"w-tree-node-checkbox__inner"})]):_vm._e()]),_c('div',{staticClass:"w-tree-node__content",on:{"click":_vm._handleNodeClick}},[_c('NodeContent',{attrs:{"data":_vm.data}})],1)]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.expand),expression:"expand"}],staticClass:"w-tree-node__children"},_vm._l((_vm.data.children),function(childData){return _c('tree-node',{key:childData[_vm.tree.nodeKey],attrs:{"data":childData}})}),1)])}
+var tree_nodevue_type_template_id_64c74dd4_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./web/components/tree/tree-node.vue?vue&type=template&id=64c74dd4&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/tree/tree-node.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var tree_nodevue_type_script_lang_js_ = ({
+  name: 'tree-node',
+  components: {
+    NodeContent: {
+      props: {
+        data: {
+          type: Object,
+          required: true
+        }
+      },
+      render: function render(h) {
+        var parent = this.$parent;
+        var tree = parent.tree;
+        var data = this.data;
+
+        if (parent.renderContent) {
+          return parent.renderContent.call(parent._renderProxy, h, {
+            _self: tree.$vnode.context,
+            data: data
+          });
+        }
+
+        if (tree.$scopedSlots.default) {
+          return tree.$scopedSlots.default({
+            data: data
+          });
+        }
+
+        return h("span", [data[tree.nameKey]]);
+      }
+    }
+  },
+  props: {
+    data: Object,
+    renderContent: Function
+  },
+  data: function data() {
+    return {
+      isTreeNode: true,
+      gap: 0,
+      level: 1,
+      tree: null,
+      // 根节点
+      expand: false,
+      isHalfChecked: false
+    };
+  },
+  computed: {
+    cls: function cls() {
+      return {
+        'w-tree-node--leaf': this.isLeaf,
+        'w-tree-node--checked': this.checked,
+        'w-tree-node--checkbox': this.tree.showCheckbox,
+        'w-tree-node--disabled': this.isDisabled,
+        'w-tree-node--half-checked': this.isHalfChecked
+      };
+    },
+    checked: function checked() {
+      var val = this.data[this.tree.nodeKey];
+      return this.tree.multiple ? this.tree.selected.indexOf(val) > -1 : this.tree.selected === val;
+    },
+    // isHalfChecked() {
+    //     if (!this.tree.checkStrictly) {
+    //         return false
+    //     }
+    //     let checked = false
+    //     if (!this.checked) {
+    //         const checkedNodes = []
+    //         const hasHalfCheckedChild = this.$children.some((item) => {
+    //             if (item.isHalfChecked) {
+    //                 return true
+    //             }
+    //             if (item.checked) {
+    //                 checkedNodes.push(item)
+    //             }
+    //             return false
+    //         })
+    //         if (
+    //             hasHalfCheckedChild ||
+    //             (checkedNodes.length && checkedNodes.length !== this.$children.length)
+    //         ) {
+    //             checked = true
+    //         }
+    //     }
+    //     console.count('isHalfChecked')
+    //     return checked
+    // },
+    isRoot: function isRoot() {
+      return this.$parent && this.$parent.isTree;
+    },
+    isLeaf: function isLeaf() {
+      return !this.data.children || !this.data.children.length;
+    },
+    isDisabled: function isDisabled() {
+      return this.tree.nodeDisabledMethod && this.tree.nodeDisabledMethod(this.data);
+    },
+    hasChildren: function hasChildren() {
+      return this.data.children && this.data.children.length;
+    }
+  },
+  created: function created() {
+    var parent = this.$parent;
+
+    if (parent.isTree) {
+      this.tree = parent;
+      this.gap = 0;
+    } else {
+      this.level = parent.level + 1;
+      this.tree = parent.tree;
+      this.gap = parent.gap + this.tree.gap;
+    } // if (this.checked) {
+    //     this.syncParentExpand()
+    // }
+
+
+    this.expand = this.tree.expandAll || this.level < this.tree.expandLevel;
+  },
+  updated: function updated() {// if (this.checked) {
+    //     this.syncParentExpand()
+    // }
+  },
+  methods: {
+    // syncParentExpand() {
+    //     // 选中的节点，父级全部要展开
+    //     let _parent = this.$parent
+    //     while (_parent.expand === false) {
+    //         _parent.expand = true
+    //         _parent = _parent.$parent
+    //     }
+    // },
+    _handleCheckboxClick: function _handleCheckboxClick() {
+      this.tree._handleNodeClick(this.data, this);
+    },
+    _handleExpandClick: function _handleExpandClick() {
+      this.expand = !this.expand;
+    },
+    _handleNodeClick: function _handleNodeClick() {
+      if (this.isDisabled) {
+        this._handleExpandClick();
+      }
+
+      this.tree._handleNodeClick(this.data, this);
+    }
+  }
+});
+// CONCATENATED MODULE: ./web/components/tree/tree-node.vue?vue&type=script&lang=js&
+ /* harmony default export */ var tree_tree_nodevue_type_script_lang_js_ = (tree_nodevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./web/components/tree/tree-node.vue
+
+
+
+
+
+/* normalize component */
+
+var tree_node_component = normalizeComponent(
+  tree_tree_nodevue_type_script_lang_js_,
+  tree_nodevue_type_template_id_64c74dd4_render,
+  tree_nodevue_type_template_id_64c74dd4_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var tree_node = (tree_node_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/tree/tree.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var treevue_type_script_lang_js_ = ({
+  name: 'w-tree',
+  components: {
+    treeNode: tree_node
+  },
+  props: {
+    value: [String, Number, Array],
+    nodeKey: String,
+    nameKey: String,
+    showCheckbox: Boolean,
+    // 数据源
+    data: Array,
+    // 层级间距
+    gap: {
+      type: Number,
+      default: 20
+    },
+    // 展开所有
+    expandAll: Boolean,
+    expandLevel: {
+      type: Number,
+      default: 1
+    },
+    // 树节点是否可以点击
+    nodeDisabledMethod: Function,
+    // 多选
+    multiple: Boolean,
+    renderContent: Function,
+    checkStrictly: Boolean
+  },
+  data: function data() {
+    return {
+      treeData: this.data || [],
+      isTree: true,
+      selected: this._initValue(this.value)
+    };
+  },
+  created: function created() {
+    if (this.checkStrictly) {
+      this._checkData();
+    }
+  },
+  watch: {
+    value: function value(v) {
+      this.selected = this._initValue(v);
+
+      if (this.checkStrictly) {
+        this._checkData();
+      }
+    },
+    data: function data(v) {
+      this.treeData = v || [];
+    }
+  },
+  methods: {
+    _initValue: function _initValue(v) {
+      if (this.multiple) {
+        if (Array.isArray(v)) {
+          return v;
+        }
+
+        return [];
+      }
+
+      return v;
+    },
+    _checkData: function _checkData() {
+      this.$nextTick(function nextTick() {
+        var _this = this;
+
+        var check = function check(arr) {
+          arr.forEach(function (item) {
+            if (item.isTreeNode && item.checked) {
+              _this._checkStrictly(item);
+            } else if (item.$children.length) {
+              check(item.$children);
+            }
+          });
+        };
+
+        check(this.$children);
+      });
+    },
+    _handleNodeClick: function _handleNodeClick(node, nodeVm) {
+      if (this.nodeDisabledMethod && this.nodeDisabledMethod(node)) {
+        return;
+      }
+
+      if (this.multiple) {
+        var val = node[this.nodeKey];
+        var index = this.selected.indexOf(val);
+
+        if (index > -1) {
+          this.selected.splice(index, 1);
+        } else {
+          this.selected.push(val);
+        }
+      } else {
+        var nodeVal = node[this.nodeKey];
+
+        if (this.showCheckbox) {
+          var selected = null;
+
+          if (this.showCheckbox && this.selected !== nodeVal) {
+            selected = nodeVal;
+          }
+
+          this.selected = selected;
+        } else {
+          this.selected = nodeVal;
+        }
+      }
+
+      if (this.checkStrictly) {
+        this._checkStrictly(nodeVm);
+      }
+
+      this.$emit('input', this.selected);
+      this.$emit('node-click', node);
+    },
+    _checkStrictly: function _checkStrictly(nodeVm) {
+      var _this2 = this;
+
+      var checked = nodeVm.checked;
+
+      if (checked) {
+        nodeVm.isHalfChecked = false;
+      }
+
+      var _syncChildren = function _syncChildren(arr) {
+        arr.forEach(function (item) {
+          if (item.isTreeNode) {
+            var index = _this2.selected.indexOf(item.data[_this2.nodeKey]);
+
+            if (checked) {
+              // 子节点全选中
+              if (index === -1) {
+                _this2.selected.push(item.data[_this2.nodeKey]);
+
+                item.isHalfChecked = false;
+              }
+            } else if (index > -1) {
+              // 子节点全删除
+              _this2.selected.splice(index, 1);
+            }
+
+            if (item.$children && item.$children.length) {
+              _syncChildren(item.$children);
+            }
+          }
+        });
+      };
+
+      if (nodeVm.$children && nodeVm.$children.length) {
+        _syncChildren(nodeVm.$children);
+      }
+
+      var parent = nodeVm.$parent;
+
+      var _loop = function _loop() {
+        var nodeValue = parent.data[_this2.nodeKey];
+
+        var index = _this2.selected.indexOf(nodeValue);
+
+        var checkedNodes = [];
+        var halfCheckedNodes = [];
+        var children = parent.$children;
+        children.forEach(function (child) {
+          if (child.checked) {
+            checkedNodes.push(child);
+          } else if (child.isHalfChecked) {
+            halfCheckedNodes.push(child);
+          }
+        });
+        var checkedCount = checkedNodes.length;
+        var childrenCount = children.length;
+        var halfCheckedCount = halfCheckedNodes.length;
+
+        if (checked) {
+          if (index === -1 && checkedCount === childrenCount) {
+            _this2.selected.push(nodeValue);
+          }
+        } else if (index > -1) {
+          _this2.selected.splice(index, 1);
+        }
+
+        parent.isHalfChecked = halfCheckedCount > 0 || checkedCount > 0 && checkedCount !== childrenCount;
+        parent = parent.$parent;
+      };
+
+      while (parent && !parent.isTree && parent.isTreeNode) {
+        _loop();
+      }
+    },
+    getCheckedNodes: function getCheckedNodes() {
+      var _this3 = this;
+
+      if (this.multiple) {
+        var nodes = [];
+
+        if (this.selected.length) {
+          var _recursion = function _recursion(arr) {
+            arr.forEach(function (item) {
+              if (_this3.selected.indexOf(item[_this3.nodeKey]) > -1) {
+                nodes.push(item);
+              }
+
+              if (item.children) {
+                _recursion(item.children);
+              }
+            });
+          };
+
+          _recursion(this.data);
+        }
+
+        return nodes;
+      }
+
+      var node = null;
+
+      var recursion = function recursion(arr) {
+        var result = arr.some(function (item) {
+          if (item[_this3.nodeKey] === _this3.selected) {
+            node = item;
+            return true;
+          }
+
+          if (item.children) {
+            return recursion(item.children);
+          }
+
+          return false;
+        });
+        return result;
+      };
+
+      recursion(this.data);
+      return node;
+    }
+  }
+});
+// CONCATENATED MODULE: ./web/components/tree/tree.vue?vue&type=script&lang=js&
+ /* harmony default export */ var tree_treevue_type_script_lang_js_ = (treevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./web/components/tree/tree.vue
+
+
+
+
+
+/* normalize component */
+
+var tree_component = normalizeComponent(
+  tree_treevue_type_script_lang_js_,
+  treevue_type_template_id_e26744e8_render,
+  treevue_type_template_id_e26744e8_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var tree = (tree_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/select/select-tree.vue?vue&type=script&lang=js&
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var select_treevue_type_script_lang_js_ = ({
+  name: 'w-select-tree',
+  components: {
+    tree: tree
+  },
+  props: {
+    data: Array,
+    nodeDisabledMethod: Function
+  },
+  data: function data() {
+    return {};
+  },
+  computed: {
+    select: function select() {
+      var parent = this.$parent;
+
+      while (parent) {
+        if (parent.$options.name !== 'w-select') {
+          parent = parent.$parent;
+        } else {
+          return parent;
+        }
+      }
+
+      return false;
+    },
+    isMultiple: function isMultiple() {
+      return this.select.multiple;
+    },
+    value: {
+      get: function get() {
+        return this.select.value;
+      },
+      set: function set(v) {
+        this.select.$emit('select', v);
+        console.log('select-tree set', v);
+      }
+    }
+  },
+  watch: {
+    data: function data(v) {
+      this.select.$emit('add-option', this._flatTree(v));
+    }
+  },
+  created: function created() {
+    if (this.data && this.data.length) {
+      this.select.$emit('add-option', this._flatTree(this.data));
+    }
+  },
+  methods: {
+    _flatTree: function _flatTree(data) {
+      var _this = this;
+
+      var flatNodes = [];
+
+      var _flat = function _flat(arr) {
+        arr.forEach(function (item) {
+          flatNodes.push({
+            label: item[_this.$attrs.nameKey],
+            value: item[_this.$attrs.nodeKey]
+          });
+
+          if (item.children && item.children.length) {
+            _flat(item.children);
+          }
+        });
+      };
+
+      _flat(data);
+
+      return flatNodes;
+    } // _initValue(v) {
+    //     if (this.isMultiple) {
+    //         if (Array.isArray(v)) {
+    //             return v
+    //         }
+    //         return []
+    //     }
+    //     return v
+    // },
+
+  }
+});
+// CONCATENATED MODULE: ./web/components/select/select-tree.vue?vue&type=script&lang=js&
+ /* harmony default export */ var select_select_treevue_type_script_lang_js_ = (select_treevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./web/components/select/select-tree.vue
+
+
+
+
+
+/* normalize component */
+
+var select_tree_component = normalizeComponent(
+  select_select_treevue_type_script_lang_js_,
+  select_treevue_type_template_id_aca2feec_render,
+  select_treevue_type_template_id_aca2feec_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var select_tree = (select_tree_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"058f6340-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./web/components/radio/radio-group.vue?vue&type=template&id=7e825984&
 var radio_groupvue_type_template_id_7e825984_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"w-radio-group"},[_vm._t("default")],2)}
 var radio_groupvue_type_template_id_7e825984_staticRenderFns = []
@@ -3792,7 +4406,9 @@ var radio_button_component = normalizeComponent(
 
 
 
-var components = [button_button, input, dialog, select_select, progress, select_option, radio_group, radio_button];
+
+
+var components = [button_button, input, dialog, select_select, select_option, select_tree, progress, radio_group, radio_button, tree];
 
 function install() {
   components.forEach(function (component) {

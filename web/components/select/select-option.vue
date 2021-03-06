@@ -32,10 +32,10 @@ export default {
             return this.select.multiple
         },
         isSelected() {
-            if (!this.isMultiple) {
-                return this.select.value === this.value
+            if (this.isMultiple) {
+                return this.select.value.indexOf(this.value) > -1
             }
-            return this.select.value.indexOf(this.value) > -1
+            return this.select.value === this.value
         },
     },
     created() {
