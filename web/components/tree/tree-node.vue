@@ -10,7 +10,7 @@
                     <div class="w-tree-node-checkbox__inner"></div>
                 </div>
             </div>
-            <div class="w-tree-node__content" @click="_handleNodeClick">
+            <div class="w-tree-node__name" @click="_handleNodeClick">
                 <NodeContent :data="data"></NodeContent>
             </div>
         </div>

@@ -45,7 +45,6 @@ export default {
             },
             set(v) {
                 this.select.$emit('select', v)
-                console.log('select-tree set', v)
             },
         },
     },

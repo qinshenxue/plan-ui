@@ -136,11 +136,15 @@ export default {
         })
         this.$on('select', (val) => {
             if (this.multiple) {
-                const valIndex = this.selectedValue.indexOf(val)
-                if (valIndex > -1) {
-                    this.selectedValue.splice(valIndex, 1)
+                if (Array.isArray(val)) {
+                    this.selectedValue = val
                 } else {
-                    this.selectedValue.push(val)
+                    const valIndex = this.selectedValue.indexOf(val)
+                    if (valIndex > -1) {
+                        this.selectedValue.splice(valIndex, 1)
+                    } else {
+                        this.selectedValue.push(val)
+                    }
                 }
             } else {
                 this.selectedValue = val

@@ -87,6 +87,19 @@
                 </w-select-tree>
             </w-select>
         </p>
+        <h3>select tree 多选</h3>
+        <p>
+            <w-select multiple plain style="width:200px" placeholder="请选择"
+                      dropdownClass="tree-dropdown" v-model="selectValues">
+                <w-select-tree :data="treeData" expandAll nameKey="proj_name"
+                               :nodeDisabledMethod="nodeDisabledMethod"
+                               nodeKey="proj_guid">
+                    <template slot-scope="{data}">
+                        {{data.parent_guid?data.proj_short_name:data.proj_name}}
+                    </template>
+                </w-select-tree>
+            </w-select>
+        </p>
         <p>
             <w-button @click="handleChangeOptions">改变options
             </w-button>
