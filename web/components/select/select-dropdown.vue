@@ -41,8 +41,8 @@ export default {
                     this.init()
                 }
                 this.handleResize()
-                if (this.select.plain) {
-                    //  fix 滚动条宽度问题
+                if (this.select.plain && !this.dropdownWidth) {
+                    // fix 滚动条宽度问题
                     this.$nextTick(() => {
                         const rect = this.$el.getBoundingClientRect()
                         this.style.minWidth = `${rect.width}px`
@@ -71,16 +71,22 @@ export default {
             const topSpace = rect.top
             const winHeight = window.innerHeight
             const bottomSpace = winHeight - rect.bottom
-            if (bottomSpace < 200 && bottomSpace < topSpace) {
+
+            if (bottomSpace < 300 && bottomSpace < topSpace) {
                 style.bottom = `${winHeight - rect.top}px`
             } else {
                 style.top = `${rect.bottom}px`
             }
 
             if (this.select.plain) {
-                style.right = `${window.innerWidth - rect.right}px`
-                style.minWidth = `${rect.width}px`
-                style.maxWidth = `${this.select.dropdownWidth}px`
+                const bodyRect = document.body.getBoundingClientRect()
+                style.right = `${bodyRect.width - rect.right}px`
+                const dropdownWidth = this.select.dropdownWidth
+                if (dropdownWidth) {
+                    style.width = `${dropdownWidth}px`
+                } else {
+                    style.minWidth = `${rect.width}px`
+                }
             } else {
                 style.left = `${rect.left}px`
                 style.width = `${rect.width}px`

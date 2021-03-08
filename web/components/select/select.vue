@@ -8,7 +8,8 @@
             <div class="w-select__label-inner">{{selectedLabel}}
             </div>
             <div class="w-selet__label-multiple"
-                 v-if="multiple && value.length>1">等{{value.length}}个</div>
+                 v-if="multiple && value.length>1">{{multipleSuffixContent}}
+            </div>
             <div class="w-select__arrow"></div>
         </div>
         <selectDropdown ref="dropdown" :class="dropdownClass"
@@ -34,6 +35,9 @@ export default {
         placeholder: String,
         value: [String, Number, Array],
         multiple: Boolean,
+        // 多选显示的后缀
+        // string 设置为“项目”，显示为等5个项目
+        multipleSuffix: [String, Function],
         plain: Boolean,
         size: String,
     },
@@ -50,6 +54,18 @@ export default {
                 return (Array.isArray(this.value) || true) && !this.value.length
             }
             return this.value == null || this.value === ''
+        },
+        multipleSuffixContent() {
+            const suffix = this.multipleSuffix
+            const type = typeof suffix
+            switch (type) {
+                case 'string':
+                    return `等${this.value.length}个${suffix}`
+                case 'function':
+                    return this.multipleSuffix(this.value.length)
+                default:
+                    return ''
+            }
         },
         selectedLabel() {
             let label = this.placeholder

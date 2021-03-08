@@ -67,17 +67,16 @@
         </p>
         <h3>数据的，plain</h3>
         <p>
-            <w-select multiple plain placeholder="请选择" :dropdownWidth="200"
-                      v-model="selectValues">
-                <w-select-option v-for="option in 100" :key="option"
-                                 :value="option" label="我是中国人">
+            <w-select multiple plain placeholder="请" v-model="selectValues">
+                <w-select-option v-for="option in 1000" :key="option"
+                                 :value="option" :label="option+''">
                 </w-select-option>
             </w-select>
         </p>
         <h3>select tree</h3>
         <p>
-            <w-select plain style="width:200px" placeholder="请选择"
-                      dropdownClass="tree-dropdown" v-model="selectValue">
+            <w-select plain placeholder="请选择" dropdownClass="tree-dropdown"
+                      v-model="selectValue">
                 <w-select-tree :data="treeData" expandAll nameKey="proj_name"
                                :nodeDisabledMethod="nodeDisabledMethod"
                                nodeKey="proj_guid">
@@ -89,8 +88,9 @@
         </p>
         <h3>select tree 多选</h3>
         <p>
-            <w-select multiple plain style="width:200px" placeholder="请选择"
-                      dropdownClass="tree-dropdown" v-model="selectValues">
+            <w-select multiple multipleSuffix="项目" plain placeholder="请选择"
+                      :dropdownWidth="300" dropdownClass="tree-dropdown"
+                      v-model="selectValues">
                 <w-select-tree :data="treeData" expandAll nameKey="proj_name"
                                :nodeDisabledMethod="nodeDisabledMethod"
                                nodeKey="proj_guid">
